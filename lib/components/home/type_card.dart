@@ -54,9 +54,18 @@ class _TypesCardsState extends State<TypesCards> {
             margin: EdgeInsets.only(right: 5),
             child: Padding(
               padding: const EdgeInsets.symmetric(horizontal: 6, vertical: 2),
-              child: Text(
-                widget.pokemom.type[i],
-                style: TextStyle(color: Colors.white, fontSize: 14),
+              child: Row(
+                children: [
+                  Image.asset(
+                      "assets/Icons/${widget.pokemom.type[i].toLowerCase()}.png"),
+                  SizedBox(
+                    width: 5,
+                  ),
+                  Text(
+                    widget.pokemom.type[i],
+                    style: TextStyle(color: Colors.white, fontSize: 14),
+                  ),
+                ],
               ),
             ),
           );

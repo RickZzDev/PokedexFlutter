@@ -13,17 +13,17 @@ class DetailsView extends DetailsViewModel {
   @override
   Widget build(BuildContext context) {
     return Scaffold(
-      backgroundColor: Colors.green,
+      backgroundColor: myUtilClass.defineColor(widget.pokemom.type[0]),
       appBar: AppBar(
         elevation: 0,
         automaticallyImplyLeading: false,
-        backgroundColor: Colors.green,
+        backgroundColor: myUtilClass.defineColor(widget.pokemom.type[0]),
         leading: IconButton(
           icon: Icon(Icons.arrow_back_ios),
           color: Colors.white,
           onPressed: () => Navigator.pop(context),
         ),
-        title: Text("Bulbasaur"),
+        title: Text(widget.pokemom.name),
         centerTitle: true,
       ),
       body: SlidingSheet(
@@ -31,7 +31,7 @@ class DetailsView extends DetailsViewModel {
         controller: detailsStore.newController,
         headerBuilder: (context, state) {
           return Container(
-            color: Colors.green,
+            color: myUtilClass.defineColor(widget.pokemom.type[0]),
             height: 30,
             width: MediaQuery.of(context).size.width,
             child: Row(
@@ -53,7 +53,7 @@ class DetailsView extends DetailsViewModel {
           detailsStore.changeExpanded(state);
         },
         // extendBody: true,
-        color: Colors.green,
+        color: myUtilClass.defineColor(widget.pokemom.type[0]),
         body: Observer(
           builder: (context) {
             return AnimatedOpacity(
@@ -77,6 +77,13 @@ class DetailsView extends DetailsViewModel {
                           crossAxisAlignment: CrossAxisAlignment.start,
                           mainAxisAlignment: MainAxisAlignment.spaceBetween,
                           children: [
+                            Text(
+                              "#${widget.pokemom.number}",
+                              style: TextStyle(
+                                color: Colors.black,
+                                fontSize: 16,
+                              ),
+                            ),
                             Text(
                               widget.pokemom.name,
                               style: TextStyle(
@@ -112,10 +119,10 @@ class DetailsView extends DetailsViewModel {
                     ),
                   ),
                   child: detailsStore.getSelected == "About"
-                      ? AboutBody()
+                      ? AboutBody(widget.pokemom)
                       : detailsStore.getSelected == "Skills"
-                          ? SkillsBody()
-                          : EvolutionsBody());
+                          ? SkillsBody(widget.pokemom)
+                          : EvolutionsBody(widget.pokemom));
             },
           );
         },

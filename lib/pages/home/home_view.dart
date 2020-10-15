@@ -24,26 +24,6 @@ class MyHomePageView extends MyHomePageViewMoel {
                 child: Column(
                   mainAxisAlignment: MainAxisAlignment.spaceBetween,
                   children: [
-                    Row(
-                      mainAxisAlignment: MainAxisAlignment.end,
-                      children: [
-                        IconButton(
-                            icon: Icon(Icons.dialpad_outlined),
-                            onPressed: () => showSlidingFilter("Filter")),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        IconButton(
-                            icon: Icon(Icons.format_list_bulleted_sharp),
-                            onPressed: () => showSlidingFilter("Sort")),
-                        SizedBox(
-                          width: 15,
-                        ),
-                        IconButton(
-                            icon: Icon(Icons.format_line_spacing_outlined),
-                            onPressed: () => showSlidingFilter("Gen")),
-                      ],
-                    ),
                     Align(
                       alignment: Alignment.topLeft,
                       child: Text(
@@ -60,6 +40,7 @@ class MyHomePageView extends MyHomePageViewMoel {
                       ),
                     ),
                     TextField(
+                      onChanged: pokeStore.setFilter,
                       decoration: InputDecoration(
                           hintText: "Digite aqui",
                           filled: true,
@@ -111,9 +92,9 @@ class MyHomePageView extends MyHomePageViewMoel {
                       future: pokeStore.pokeHttpResonse,
                       builder: (context, snapshot) {
                         if (snapshot.connectionState == ConnectionState.done) {
-                          PokeApi pokemons = pokeStore.pokeApi;
+                          List<Pokemon> pokemons = pokeStore.filteredPoke;
                           return ListView.builder(
-                            itemCount: pokemons.pokemon.length,
+                            itemCount: pokemons.length,
                             itemBuilder: (context, index) {
                               return Column(
                                 children: [
@@ -123,13 +104,13 @@ class MyHomePageView extends MyHomePageViewMoel {
                                       GestureDetector(
                                         onTap: () => Navigator.of(context).push(
                                           MaterialPageRoute(
-                                            builder: (context) => Details(
-                                                pokemons.pokemon[index]),
+                                            builder: (context) =>
+                                                Details(pokemons[index]),
                                           ),
                                         ),
                                         child: Card(
                                           color: defineCardColorByType(
-                                              "${pokemons.pokemon[index].type[0]}",
+                                              "${pokemons[index].type[0]}",
                                               false),
                                           child: Padding(
                                             padding: const EdgeInsets.only(
@@ -157,7 +138,7 @@ class MyHomePageView extends MyHomePageViewMoel {
                                                   child: Row(
                                                     children: [
                                                       Text(
-                                                        "${pokemons.pokemon[index].name}",
+                                                        "${pokemons[index].name}",
                                                         style: TextStyle(
                                                             color: Colors.white,
                                                             fontSize: 20,
@@ -171,8 +152,7 @@ class MyHomePageView extends MyHomePageViewMoel {
                                                 SizedBox(
                                                   height: 15,
                                                 ),
-                                                TypesCards(
-                                                    pokemons.pokemon[index])
+                                                TypesCards(pokemons[index])
                                               ],
                                             ),
                                           ),
@@ -193,7 +173,7 @@ class MyHomePageView extends MyHomePageViewMoel {
                                         height: 120,
                                         width: 120,
                                         child: Image.network(
-                                          pokemons.pokemon[index].img,
+                                          pokemons[index].img,
                                           fit: BoxFit.fitWidth,
                                         ),
                                       ),

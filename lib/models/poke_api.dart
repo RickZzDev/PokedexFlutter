@@ -160,6 +160,7 @@ class Pokemon {
   String number;
   String name;
   String img;
+  String description;
   List<String> type;
   String height;
   String weight;

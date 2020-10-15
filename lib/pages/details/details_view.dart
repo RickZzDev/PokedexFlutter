@@ -38,7 +38,7 @@ class DetailsView extends DetailsViewModel {
               mainAxisAlignment: MainAxisAlignment.spaceAround,
               children: [
                 TabSliding("About"),
-                TabSliding("Skills"),
+                TabSliding("Game"),
                 TabSliding("Evolutions"),
               ],
             ),
@@ -120,7 +120,7 @@ class DetailsView extends DetailsViewModel {
                   ),
                   child: detailsStore.getSelected == "About"
                       ? AboutBody(widget.pokemom)
-                      : detailsStore.getSelected == "Skills"
+                      : detailsStore.getSelected == "Game"
                           ? SkillsBody(widget.pokemom)
                           : EvolutionsBody(widget.pokemom));
             },

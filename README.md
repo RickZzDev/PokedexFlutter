@@ -17,3 +17,9 @@ samples, guidance on mobile development, and a full API reference.
 # PokedexFlutter
 
 # Este projeto foi criado para o desafio final do bootcamp de flutter, criando uma POKEDEX utilizando Provides/MobX e arquitetura MVVM
+
+![alt text](https://github.com/RickZzDev/PokedexFlutter/blob/master/assets/gitImg/1.jpeg)
+![alt text](https://github.com/RickZzDev/PokedexFlutter/blob/master/assets/gitImg/2.jpeg)
+![alt text](https://github.com/RickZzDev/PokedexFlutter/blob/master/assets/gitImg/3.jpeg)
+![alt text](https://github.com/RickZzDev/PokedexFlutter/blob/master/assets/gitImg/4.jpeg)
+![alt text](https://github.com/RickZzDev/PokedexFlutter/blob/master/assets/gitImg/5.jpeg)
